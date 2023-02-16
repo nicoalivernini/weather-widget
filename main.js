@@ -1,24 +1,29 @@
 let APIKey = "dddfdf818b35e8a44795a3ce3303374f";
 let cityName = ["London", "Milan", "Bangkok", "Los Angeles", "Nairobi"];
-//let dataCity = [];
+let touchStartX = 0;
+let touchEndX = 0;
+let elementCard = "";
 
-/* $(document).ready(
+$(document).ready(() => {
   $.each(cityName, (i, element) => {
     $.ajax(
       {
         url: `https://api.openweathermap.org/data/2.5/weather?q=${element}&appid=${APIKey}&units=metric`,
         method: 'GET',
         success: (data, state) => {
-          //dataCity.push(data)
-          $('.weatherWidgetContent').append(
-            `<div class="weatherWidgetCardContainer">
-              <div class="weatherWidgetCardContent">
-                <p>${data.name}</p>
-                <p>${data.main.temp}</p>
-                <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png";
-              </div>
+          $('.weatherWidgetCardContainer').append(
+            `<div class="weatherWidgetCardContent">
+              <p>${data.name}</p>
+              <p>${data.main.temp}</p>
+              <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png";
             </div>`)
           console.log(data)
+          //SET DOTS
+          $('.weatherWidgetDotContent').append(
+            `<i class="fa-regular fa-circle"></i>`
+          )
+          $(`.weatherWidgetCardContent:first-child`).addClass("active");
+          $(`.fa-circle:first-child`).addClass("fa-solid");
         },
         error: (error) => {
           alert(`E avvenuto un errore ${error}`)
@@ -26,24 +31,8 @@ let cityName = ["London", "Milan", "Bangkok", "Los Angeles", "Nairobi"];
       }
     )
   })
-) */
 
-/* function forecast() {
-  $.ajax({
-    url: `https://api.openweathermap.org/data/2.5/forecast?lat=41.53&lon=12.32&appid=dddfdf818b35e8a44795a3ce3303374f`,
-    method: 'GET',
-    success: (data, state) => {
-      console.log(data)
-    }
-  })
-}  */
-
-let touchStartX = 0;
-let touchEndX = 0;
-let elementCard = "";
-
-$(document).ready(() => {
-  let elementCard = document.getElementById("ok");
+  let elementCard = document.getElementById("carousel-container");
 
   elementCard.addEventListener("touchstart",
     function (event) {
@@ -60,6 +49,7 @@ $(document).ready(() => {
   
   let counterSlide = 1;
 
+
   function checkTypeSwipe() {
     let swipeDirection = "";
   
@@ -68,11 +58,15 @@ $(document).ready(() => {
       increaseDecreaseSlide("+");
       $(`.weatherWidgetCardContent:nth-child(${counterSlide})`).addClass("active");
       $(`.weatherWidgetCardContent:nth-child(${counterSlide-1})`).removeClass("active");
+      $(`.fa-circle:nth-child(${counterSlide})`).addClass("fa-solid");
+      $(`.fa-circle:nth-child(${counterSlide-1})`).removeClass("fa-solid");
     } else if (touchEndX > touchStartX && counterSlide > 1 && counterSlide <= 5) {
       swipeDirection = "right";
       increaseDecreaseSlide("-");
       $('.weatherWidgetCardContent').removeClass('active');
       $(`.weatherWidgetCardContent:nth-child(${counterSlide})`).addClass("active");
+      $('.fa-circle').removeClass('fa-solid');
+      $(`.fa-circle:nth-child(${counterSlide})`).addClass("fa-solid");
     }
   }
 
