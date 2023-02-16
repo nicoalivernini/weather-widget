@@ -5,7 +5,8 @@ let touchEndX = 0;
 let elementCard = "";
 
 $(document).ready(() => {
-  $.each(cityName, (i, element) => {
+  //API Openweather No Forecast
+  /* $.each(cityName, (i, element) => {
     $.ajax(
       {
         url: `https://api.openweathermap.org/data/2.5/weather?q=${element}&appid=${APIKey}&units=metric`,
@@ -30,6 +31,38 @@ $(document).ready(() => {
         }
       }
     )
+  }) */
+
+  //API VisualCrossing
+  $.each(cityName, (i, element) => {
+    fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${element}/today?unitGroup=metric&iconSet=icons2&key=3WC7H3VP8NCUE6Z575DXTKTN7&contentType=json`, {
+      "method": "GET",
+      "headers": {
+      }
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then((data) => {
+      //console.log(data)
+      $('.weatherWidgetCardContainer').append(
+        `<div class="weatherWidgetCardContent">
+          <p>${data.address}</p>
+          <p>${data.currentConditions.temp}</p>
+          <img src="./assets/icons/${data.currentConditions.icon}.png";
+          assets/icons/cloudy.png
+        </div>`)
+      console.log(data)
+      //SET DOTS
+      $('.weatherWidgetDotContent').append(
+        `<i class="fa-regular fa-circle"></i>`
+      )
+      $(`.weatherWidgetCardContent:first-child`).addClass("active");
+      $(`.fa-circle:first-child`).addClass("fa-solid");
+    })
+    .catch(err => {
+      console.error(err);
+    });
   })
 
   let elementCard = document.getElementById("carousel-container");
