@@ -7,28 +7,28 @@
 
 .weatherWidgetCardContainer:nth-child(1) .weatherWidgetCardContent {
   background-color: red;
-  height: 100px;
+  height: 100vh;
   border-radius: 20px;
   position: relative;
 }
 
 .weatherWidgetCardContainer:nth-child(2) .weatherWidgetCardContent {
   background-color: blue;
-  height: 100px;
+  height: 100vh;
   border-radius: 20px;
   position: relative;
 }
 
 .weatherWidgetCardContainer:nth-child(3) .weatherWidgetCardContent {
   background-color: pink;
-  height: 100px;
+  height: 100vh;
   border-radius: 20px;
   position: relative;
 }
 
 .weatherWidgetCardContainer .weatherWidgetCardContent {
   display: none;
-  width: 200px;
+  width: 700px;
 }
 
 .weatherWidgetCardContainer .weatherWidgetCardContent.active {

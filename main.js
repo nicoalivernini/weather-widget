@@ -1,8 +1,8 @@
-let APIKey = 'dddfdf818b35e8a44795a3ce3303374f';
-let cityName = ['London', 'Milan', 'Bangkok', 'Los Angeles', 'Nairobi'];
+let APIKey = "dddfdf818b35e8a44795a3ce3303374f";
+let cityName = ["London", "Milan", "Bangkok", "Los Angeles", "Nairobi"];
 //let dataCity = [];
 
- /* $(document).ready(
+/* $(document).ready(
   $.each(cityName, (i, element) => {
     $.ajax(
       {
@@ -38,42 +38,49 @@ let cityName = ['London', 'Milan', 'Bangkok', 'Los Angeles', 'Nairobi'];
   })
 }  */
 
-  let touchstartX = 0;
-  let touchendX = 0;
-  let gesuredZone = '';
+let touchStartX = 0;
+let touchEndX = 0;
+let elementCard = "";
 
-  $(document).ready(() => {
-    let gesuredZone = document.getElementById('ok');
+$(document).ready(() => {
+  let elementCard = document.getElementById("ok");
 
-    gesuredZone.addEventListener('touchstart', function(event) {
-      touchstartX = event.changedTouches[0].screenX;
-  }, true);
+  elementCard.addEventListener("touchstart",
+    function (event) {
+      touchStartX = event.changedTouches[0].screenX;
+    },true
+  );
 
-  gesuredZone.addEventListener('touchend', function(event) {
-      touchendX = event.changedTouches[0].screenX;
+  elementCard.addEventListener("touchend",
+    function (event) {
+      touchEndX = event.changedTouches[0].screenX;
       checkTypeSwipe();
-  }, true); 
+    },true
+  );
+  
+  let counterSlide = 1;
 
   function checkTypeSwipe() {
-    let swipeDirection = '';
-    let counterSlide = 1;
-    if (touchendX < touchstartX) {
-      swipeDirection = 'left'
-    } else if (touchendX > touchstartX) {
-      swipeDirection = 'right'
-    }
-    if(swipeDirection === 'left') {
-      console.log(swipeDirection, 'if');
-      $('.active').addClass('next');
-      //counterSlide+
-      console.log(counterSlide)
-    } else if (swipeDirection === 'right') {
-      console.log(swipeDirection, 'if');
-      $('.active').removeClass('next')
-      //counterSlide-
-      console.log(counterSlide)
-    }
-  } 
-})
-
+    let swipeDirection = "";
   
+    if (touchEndX < touchStartX && counterSlide > 0 && counterSlide <= 4) {
+      swipeDirection = "left";
+      increaseDecreaseSlide("+");
+      $(`.weatherWidgetCardContent:nth-child(${counterSlide})`).addClass("active");
+      $(`.weatherWidgetCardContent:nth-child(${counterSlide-1})`).removeClass("active");
+    } else if (touchEndX > touchStartX && counterSlide > 1 && counterSlide <= 5) {
+      swipeDirection = "right";
+      increaseDecreaseSlide("-");
+      $('.weatherWidgetCardContent').removeClass('active');
+      $(`.weatherWidgetCardContent:nth-child(${counterSlide})`).addClass("active");
+    }
+  }
+
+  function increaseDecreaseSlide(value) {
+    if (value === "+") {
+      return counterSlide++;
+    } else if (value === "-") {
+      return counterSlide--;
+    }
+  }
+});
