@@ -1,0 +1,40 @@
+.weatherWidgetCardContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.weatherWidgetCardContainer:nth-child(1) .weatherWidgetCardContent {
+  background-color: red;
+  height: 100px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.weatherWidgetCardContainer:nth-child(2) .weatherWidgetCardContent {
+  background-color: blue;
+  height: 100px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.weatherWidgetCardContainer:nth-child(3) .weatherWidgetCardContent {
+  background-color: pink;
+  height: 100px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.weatherWidgetCardContainer .weatherWidgetCardContent {
+  display: none;
+  width: 200px;
+}
+
+.weatherWidgetCardContainer .weatherWidgetCardContent.active {
+  display: block
+}
+
+.next {
+  transform: translateX(-50%);
+}
