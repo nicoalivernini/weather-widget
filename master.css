@@ -1,40 +1,100 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu', Helvetica, sans-serif;
+  /* color: #f9f9f9; */
+}
+
 .weatherWidgetCardContainer {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  padding: 50px 0;
+  background-color: #FEF9EE;
 }
 
-.weatherWidgetCardContainer:nth-child(1) .weatherWidgetCardContent {
-  background-color: red;
-  height: 100vh;
-  border-radius: 20px;
-  position: relative;
-}
-
-.weatherWidgetCardContainer:nth-child(2) .weatherWidgetCardContent {
-  background-color: blue;
-  height: 100vh;
-  border-radius: 20px;
-  position: relative;
-}
-
-.weatherWidgetCardContainer:nth-child(3) .weatherWidgetCardContent {
-  background-color: pink;
-  height: 100vh;
+.weatherWidgetCardContainer .weatherWidgetCardContent {
+  border: 1px solid red;
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
   border-radius: 20px;
   position: relative;
 }
 
 .weatherWidgetCardContainer .weatherWidgetCardContent {
   display: none;
-  width: 700px;
 }
 
 .weatherWidgetCardContainer .weatherWidgetCardContent.active {
-  display: block
+  display: block;
 }
 
 .next {
   transform: translateX(-50%);
+}
+
+.weatherWidgetForecastContent {
+  display: flex;
+}
+
+.wWCurrentConditionsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wWCurrentConditionsCity {
+  margin: 0 0 25px;
+}
+
+.wWCurrentConditionsCity i {
+  margin-right: 5px;
+}
+
+.wWCurrentConditionsIcon {
+  height: 90px;
+  margin: 0 0 30px;
+}
+
+.wWCurrentConditionsTemp {
+  margin: 0 0 30px;
+  font-size: 45px;
+}
+
+.wWCurrentConditionsMaxMin {
+  margin: 0 0 30px;
+}
+
+.wWCurrentConditionsExtraInfoContainer {
+  padding: 10px 20px;
+  background: #00000030;
+  border-radius: 40px;
+}
+
+.wWCurrentConditionsExtraInfoContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.wWCurrentConditionsExtraInfoContent span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.wWCurrentConditionsExtraInfoContent span svg {
+  height: 20px;
+}
+
+/* back #FEF9EE
+
+card #FEFFF8 */
+
+.weatherWidgetForecastContent {
+  flex-wrap: wrap;
 }
