@@ -11,22 +11,25 @@
     <link rel="stylesheet" href="master.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="main.js"></script>
+    <script defer src="main.js"></script>
   </head>
   <body>
     <div class="weatherWidgetContainer">
       <div class="weatherWidgetContent">
         <div id="carousel-container" class="weatherWidgetCardContainer">
         </div>
-        <div class="weatherWidgetForecastContainer">
-
-        </div>
       </div>
       <div class="weatherWidgetDotContainer">
         <div class="weatherWidgetDotContent">
         </div>
       </div>
-      
+      <div class="weatherWidgetArrowContainer">
+        <div class="weatherWidgetArrowContent">
+          <i onClick="moveSlideArrow('right')" class="fa-solid fa-arrow-right"></i>
+          <i onClick="moveSlideArrow('left')"class="fa-solid fa-arrow-left"></i>
+        </div>
+      </div>
     </div>
   </body>
+  
 </html>

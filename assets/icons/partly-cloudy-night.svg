@@ -1,1 +1,190 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117.22 62.47"><defs><style>.cls-1{fill:#f5b952;}.cls-2{fill:#aac7d5;}.cls-3{fill:#cae3f6;}.cls-4{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:4px;}</style></defs><title>partly-cloudy-night Asset 182colored</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M18.58,30a19.63,19.63,0,0,1-1.65-11.06A24.21,24.21,0,0,1,23.29,6.56a32.14,32.14,0,0,1,2.84-2.74,16.28,16.28,0,0,0-4.08-1.45A16.57,16.57,0,0,0,6.2,29.6a16.23,16.23,0,0,0,5.51,4"/><path class="cls-2" d="M78.93,51.52a1.23,1.23,0,0,1,.77-.46A25,25,0,0,0,90.83,47c6.44,4.75,12,5.41,17.45,2.13,4.78-2.85,7.71-8.49,6.77-13.84-1.39-8-6.53-12-14.43-12.58C98,12.82,91.94,6.24,81.9,4.45c-11.74-2.1-20.29,3.05-26,13.23"/><path class="cls-3" d="M65.48,31.33l-.36,0a24,24,0,0,0-47,.87c-.29,0-.58,0-.87,0a14,14,0,0,0-5.52,1.59,14.44,14.44,0,0,0-2.36,1.57,14.21,14.21,0,0,0-1.17,1A10,10,0,0,0,6.13,39,13.49,13.49,0,0,0,5,41.36c-2.57,8,1.16,13.91,5.38,16.76,4.38,3,11.5,4,17.86-1.57a24,24,0,0,0,27,0A14.67,14.67,0,1,0,65.48,31.33Z"/><path class="cls-4" d="M18.58,30a19.63,19.63,0,0,1-1.65-11.06A24.21,24.21,0,0,1,23.29,6.56a32.14,32.14,0,0,1,2.84-2.74,16.28,16.28,0,0,0-4.08-1.45A16.57,16.57,0,0,0,6.2,29.6a16.23,16.23,0,0,0,5.51,4"/><path class="cls-4" d="M78.93,51.31a1.29,1.29,0,0,1,.77-.47,24.84,24.84,0,0,0,11.13-4.1c6.44,4.75,12,5.41,17.45,2.13C113.06,46,116,40.38,115.05,35c-1.39-8-6.53-12-14.43-12.58C98,12.61,91.94,6,81.9,4.24c-11.74-2.1-20.29,3.05-26,13.23"/><path class="cls-4" d="M65.48,31.12l-.36,0a24,24,0,0,0-47,.87l-.87,0a14.06,14.06,0,0,0-5.52,1.6,14.44,14.44,0,0,0-2.36,1.57,14.06,14.06,0,0,0-1.17,1,9.89,9.89,0,0,0-2.06,2.5A13.24,13.24,0,0,0,5,41.14c-2.57,8,1.16,13.91,5.38,16.76,4.38,3,11.5,4,17.86-1.56a24,24,0,0,0,27-.05A14.67,14.67,0,1,0,65.48,31.12Z"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" height="64" viewbox="0 0 64 64">
+    <defs>
+        <filter id="blur" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+            <feOffset dx="0" dy="4" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.05"/>
+            </feComponentTransfer>
+            <feMerge> 
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/> 
+            </feMerge>
+        </filter>
+        <style type="text/css"><![CDATA[
+/*
+** CLOUDS
+*/
+@keyframes am-weather-cloud-2 {
+  0% {
+    -webkit-transform: translate(0px,0px);
+       -moz-transform: translate(0px,0px);
+        -ms-transform: translate(0px,0px);
+            transform: translate(0px,0px);
+  }
+
+  50% {
+    -webkit-transform: translate(2px,0px);
+       -moz-transform: translate(2px,0px);
+        -ms-transform: translate(2px,0px);
+            transform: translate(2px,0px);
+  }
+
+  100% {
+    -webkit-transform: translate(0px,0px);
+       -moz-transform: translate(0px,0px);
+        -ms-transform: translate(0px,0px);
+            transform: translate(0px,0px);
+  }
+}
+
+.am-weather-cloud-2 {
+  -webkit-animation-name: am-weather-cloud-2;
+     -moz-animation-name: am-weather-cloud-2;
+          animation-name: am-weather-cloud-2;
+  -webkit-animation-duration: 3s;
+     -moz-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+/*
+** MOON
+*/
+@keyframes am-weather-moon {
+  0% {
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  50% {
+    -webkit-transform: rotate(15deg);
+       -moz-transform: rotate(15deg);
+        -ms-transform: rotate(15deg);
+            transform: rotate(15deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+.am-weather-moon {
+  -webkit-animation-name: am-weather-moon;
+     -moz-animation-name: am-weather-moon;
+      -ms-animation-name: am-weather-moon;
+          animation-name: am-weather-moon;
+  -webkit-animation-duration: 6s;
+     -moz-animation-duration: 6s;
+      -ms-animation-duration: 6s;
+          animation-duration: 6s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+      -ms-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+      -ms-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-transform-origin: 12.5px 15.15px 0; /* TODO FF CENTER ISSUE */
+     -moz-transform-origin: 12.5px 15.15px 0; /* TODO FF CENTER ISSUE */
+      -ms-transform-origin: 12.5px 15.15px 0; /* TODO FF CENTER ISSUE */
+          transform-origin: 12.5px 15.15px 0; /* TODO FF CENTER ISSUE */
+}
+
+@keyframes am-weather-moon-star-1 {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.am-weather-moon-star-1 {
+  -webkit-animation-name: am-weather-moon-star-1;
+     -moz-animation-name: am-weather-moon-star-1;
+      -ms-animation-name: am-weather-moon-star-1;
+          animation-name: am-weather-moon-star-1;
+  -webkit-animation-delay: 3s;
+     -moz-animation-delay: 3s;
+      -ms-animation-delay: 3s;
+          animation-delay: 3s;
+  -webkit-animation-duration: 5s;
+     -moz-animation-duration: 5s;
+      -ms-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+      -ms-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+     -moz-animation-iteration-count: 1;
+      -ms-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+}
+
+@keyframes am-weather-moon-star-2 {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.am-weather-moon-star-2 {
+  -webkit-animation-name: am-weather-moon-star-2;
+     -moz-animation-name: am-weather-moon-star-2;
+      -ms-animation-name: am-weather-moon-star-2;
+          animation-name: am-weather-moon-star-2;
+  -webkit-animation-delay: 5s;
+     -moz-animation-delay: 5s;
+      -ms-animation-delay: 5s;
+          animation-delay: 5s;
+  -webkit-animation-duration: 4s;
+     -moz-animation-duration: 4s;
+      -ms-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+      -ms-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+     -moz-animation-iteration-count: 1;
+      -ms-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+}
+        ]]></style>
+    </defs>
+    <g filter="url(#blur)" id="cloudy-night-3">
+        <g transform="translate(20,10)">
+            <g transform="translate(16,4), scale(0.8)">
+                <g class="am-weather-moon-star-1">
+                    <polygon fill="orange" points="3.3,1.5 4,2.7 5.2,3.3 4,4 3.3,5.2 2.7,4 1.5,3.3 2.7,2.7" stroke="none" stroke-miterlimit="10"/>
+                </g>
+                <g class="am-weather-moon-star-2">
+                    <polygon fill="orange" points="3.3,1.5 4,2.7 5.2,3.3 4,4 3.3,5.2 2.7,4 1.5,3.3 2.7,2.7" stroke="none" stroke-miterlimit="10" transform="translate(20,10)"/>
+                </g>
+                <g class="am-weather-moon">
+                    <path d="M14.5,13.2c0-3.7,2-6.9,5-8.7   c-1.5-0.9-3.2-1.3-5-1.3c-5.5,0-10,4.5-10,10s4.5,10,10,10c1.8,0,3.5-0.5,5-1.3C16.5,20.2,14.5,16.9,14.5,13.2z" fill="orange" stroke="orange" stroke-linejoin="round" stroke-width="2"/>
+                </g>
+            </g>
+            <g class="am-weather-cloud-2">
+                <path d="M47.7,35.4    c0-4.6-3.7-8.2-8.2-8.2c-1,0-1.9,0.2-2.8,0.5c-0.3-3.4-3.1-6.2-6.6-6.2c-3.7,0-6.7,3-6.7,6.7c0,0.8,0.2,1.6,0.4,2.3    c-0.3-0.1-0.7-0.1-1-0.1c-3.7,0-6.7,3-6.7,6.7c0,3.6,2.9,6.6,6.5,6.7l17.2,0C44.2,43.3,47.7,39.8,47.7,35.4z" fill="#57A0EE" stroke="white" stroke-linejoin="round" stroke-width="1.2" transform="translate(-20,-11)"/>
+            </g>
+        </g>
+    </g>
+</svg>
