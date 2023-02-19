@@ -1,6 +1,5 @@
-let APIKey = "dddfdf818b35e8a44795a3ce3303374f";
-/* let cityName = ["London", "Milan", "Bangkok", "Los Angeles", "Nairobi"]; */
-let cityName = ["Rome", "Milan"];
+let APIKey = "3WC7H3VP8NCUE6Z575DXTKTN7";
+let cityName = ["London", "Milan", "Bangkok", "Los Angeles", "Nairobi"];
 let touchStartX = 0;
 let touchEndX = 0;
 let elementCard = "";
@@ -8,9 +7,9 @@ let waves = ["wave", "wave-1", "wave-2", "wave-3", "wave-4"];
 
 $(document).ready(() => {
   //API VisualCrossing
-  $.each(cityName, (i, element) => {
+  cityName.forEach((element, i) => {
     fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${element}/next7days?unitGroup=metric&key=CXF9HQ8HT5REEMMCPPZGK49JQ&contentType=json`,
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${element}/next5days?unitGroup=metric&key=${APIKey}&contentType=json`,
       {
         method: "GET",
         headers: {},
@@ -20,12 +19,12 @@ $(document).ready(() => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         let sunrise = data.currentConditions.sunrise.split("", 5).join("");
         let sunset = data.currentConditions.sunset.split("", 5).join("");
-        console.log(data.currentConditions.icon, i);
+        console.log('first data', data, i);
+        
         $(".weatherWidgetCardContainer").append(
-          `<div class="weatherWidgetCardContent">
+          `<div class="weatherWidgetCardContent" style="background:${generateLinearGradient(data)}">
             <div class="wWCurrentConditionsContainer">
               <div class="wWCurrentConditionsContent">
                 <p class="wWCurrentConditionsCity">
@@ -54,99 +53,106 @@ $(document).ready(() => {
             </div>
             <div class="weatherWidgetForecastContainer">
               <div class="weatherWidgetForecastContent">
-              ${data.days.slice(1).map((element) => {
-                return `
-                <div class="weatherWidgetForecastCard">
-                    <p class="wWWidgetForecastDate"></p>
-                    <img class="wWWidgetForecastIcon" src="./assets/icons/${element.icon}.svg">
-                    
-                    <p class="wWWidgetForecastTemperature">
-                      <span>${Math.round(element.tempmax)}°</span>
-                      <span>${Math.round(element.tempmin)}°</span></p>
-                  </div>`;
-              })}
+              ${generateCardForecastInfo(data.days)}
               </div>
             </div>
             <div class="weatherWidgetWaveContainer">
-              <img src="assets/icons/${waves[i]}.svg">
+            <img src="assets/icons/${waves[i]}.svg">
             </div>
           </div>`
         );
+          
         //SET DOTS
         $(".weatherWidgetDotContent").append(`<i class="fa-regular fa-circle"></i>`);
         $(`.weatherWidgetCardContent:first-child`).addClass("active");
         $(`.fa-circle:first-child`).addClass("fa-solid");
         let dinamicBackground = document.getElementsByClassName("weatherWidgetCardContent");
+        //Info Card forecast
+        function generateCardForecastInfo(days) {
+          let x = days.map((day) => { 
+            return `
+              <div class="weatherWidgetForecastCard">
+                <p class="wWWidgetForecastDate"></p>
+                <img class="wWWidgetForecastIcon" src="./assets/icons/${day.icon}.svg">
+                <p class="wWWidgetForecastTemperature">
+                  <span>${Math.round(day.tempmax)}°</span>
+                  <span>${Math.round(day.tempmin)}°</span></p>
+              </div>`            
+          })
+          return x.join('')
+        }
         //Switch background
-        
-        /* switch (dinamicBackIcon) {
-          case 'clear-day':
-            dinamicBackground.style.background = "linear-gradient(180deg, #ffffff, #29abe2)"
-            break;
-          case 'clear-night':
-            dinamicBackground.style.background = "linear-gradient(0deg, rgba(62,92,125,1) 0%, rgba(17,60,105,1) 100%)"
-            break;
-          case 'hail':
-            dinamicBackground.style.background = "linear-gradient(180deg, #f5f4eb, #bce1f7)"
-            break;
-          case "partly-cloudy-day":
-            dinamicBackground.style.background = "linear-gradient(180deg, #c7e9ff, #b3c7cc)"
-            break;
-          case "partly-cloudy-night":
-            dinamicBackground.style.background = "linear-gradient(0deg, #222F3D, #3D556E)"
-            break;
-          case "rain-snow-showers-day":
-            dinamicBackground.style.background = "linear-gradient(180deg, #f5f4eb, #bce1f7)"
-            break;
-          case "rain-snow-showers-night":
-            dinamicBackground.style.background = "linear-gradient(90deg, #4088a9, #284e74)"
-            break;
-          case "rain-snow":
-            dinamicBackground.style.background = "linear-gradient(0deg, #cfd9df, #e2ebf0)"
-            break;
-          case "rain":
-            dinamicBackground.style.background = "linear-gradient(0deg, #cfd9df, #e2ebf0)"
-            break;
-          case "cloudy":
-            dinamicBackground.style.background = "linear-gradient(180deg, #c7e9ff, #b3c7cc)"
-            break;
-          case "fog":
-            dinamicBackground.style.background = "linear-gradient(0deg, #cfd9df, #e2ebf0)"
-            break;
-          case "showers-day":
-            dinamicBackground.style.background = "linear-gradient(0deg, #cfd9df, #e2ebf0)"
-            break;
-          case "showers-night":
-            dinamicBackground.style.background = "linear-gradient(90deg, #4088a9, #284e74)"
-            break;
-          case "sleet":
-            dinamicBackground.style.background = "linear-gradient(180deg, #f5f4eb, #bce1f7)"
-            break;
-          case "snow-showers-day":
-            dinamicBackground.style.background = "linear-gradient(0deg, #cfd9df, #e2ebf0)"
-            break;
-          case "snow-showers-night":
-            dinamicBackground.style.background = "linear-gradient(90deg, #4088a9, #284e74)"
-            break;
-          case "snow":
-            dinamicBackground.style.background = "linear-gradient(180deg, #f5f4eb, #bce1f7)"
-            break;
-          case "thunder-rain":
-            dinamicBackground.style.background = "linear-gradient(0deg, #cfd9df, #e2ebf0)"
-            break;
-          case "thunder-showers-day":
-            dinamicBackground.style.background = "linear-gradient(0deg, #cfd9df, #e2ebf0)"
-            break;
-          case "thunder-showers-night":
-            dinamicBackground.style.background = "linear-gradient(90deg, #4088a9, #284e74)"
-            break;
-          case "thunder":
-            dinamicBackground.style.background = "linear-gradient(0deg, #cfd9df, #e2ebf0)"
-            break;
-          case "wind":
-            dinamicBackground.style.background = "linear-gradient(0deg, #cfd9df, #e2ebf0)"
-            break;
-        } */
+        function generateLinearGradient(data) {
+          let dinamicBackIcon = data.currentConditions.icon;
+          switch (dinamicBackIcon) {
+            case 'clear-day':
+              return "linear-gradient(180deg, #ffffff, #29abe2)"
+              break;
+            case 'clear-night':
+              return "linear-gradient(0deg, rgba(62,92,125,1) 0%, rgba(17,60,105,1) 100%)"
+              break;
+            case 'hail':
+              return "linear-gradient(180deg, #f5f4eb, #bce1f7)"
+              break;
+            case "partly-cloudy-day":
+              return "linear-gradient(180deg, #c7e9ff, #b3c7cc)"
+              break;
+            case "partly-cloudy-night":
+              return "linear-gradient(0deg, #222F3D, #3D556E)"
+              break;
+            case "rain-snow-showers-day":
+              return "linear-gradient(180deg, #f5f4eb, #bce1f7)"
+              break;
+            case "rain-snow-showers-night":
+              return "linear-gradient(90deg, #4088a9, #284e74)"
+              break;
+            case "rain-snow":
+              return "linear-gradient(0deg, #cfd9df, #e2ebf0)"
+              break;
+            case "rain":
+              return "linear-gradient(0deg, #cfd9df, #e2ebf0)"
+              break;
+            case "cloudy":
+              return "linear-gradient(180deg, #c7e9ff, #b3c7cc)"
+              break;
+            case "fog":
+              return "linear-gradient(0deg, #cfd9df, #e2ebf0)"
+              break;
+            case "showers-day":
+              return "linear-gradient(0deg, #cfd9df, #e2ebf0)"
+              break;
+            case "showers-night":
+              return "linear-gradient(90deg, #4088a9, #284e74)"
+              break;
+            case "sleet":
+              return "linear-gradient(180deg, #f5f4eb, #bce1f7)"
+              break;
+            case "snow-showers-day":
+              return "linear-gradient(0deg, #cfd9df, #e2ebf0)"
+              break;
+            case "snow-showers-night":
+              return "linear-gradient(90deg, #4088a9, #284e74)"
+              break;
+            case "snow":
+              return "linear-gradient(180deg, #f5f4eb, #bce1f7)"
+              break;
+            case "thunder-rain":
+              return "linear-gradient(0deg, #cfd9df, #e2ebf0)"
+              break;
+            case "thunder-showers-day":
+              return "linear-gradient(0deg, #cfd9df, #e2ebf0)"
+              break;
+            case "thunder-showers-night":
+              return "linear-gradient(90deg, #4088a9, #284e74)"
+              break;
+            case "thunder":
+              return "linear-gradient(0deg, #cfd9df, #e2ebf0)"
+              break;
+            case "wind":
+              return "linear-gradient(0deg, #cfd9df, #e2ebf0)"
+              break;
+          }
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -176,7 +182,6 @@ $(document).ready(() => {
 
   function checkTypeSwipe() {
     let swipeDirection = "";
-
     if (touchEndX < touchStartX && counterSlide > 0 && counterSlide <= 4) {
       swipeDirection = "left";
       console.log("create right");
@@ -227,95 +232,3 @@ function moveSlideArrow(direction) {
     //console.log('prev', counterSliderDesk)
   }
 }
-
-//WAVE
-
-/* function createWave(valueWave1, valueWave2, valueWave3) {
-
-  let WATER_TOP_COLOR = "#04619f35";
-  let WATER_BOTTOM_COLOR = "#000000";
-  let htmlCanvas = document.getElementById("canvas");
-  let ctx = htmlCanvas.getContext("2d");
-  let screenWidth;
-  let screenHeight;
-  let moveWavesId;
-  let wave = {};
-  let waveLength = 0;
-  let wave2 = {};
-  let wave3 = {};
-  let waves = {};
-
-  function value(x, width, numberOfWaves) {
-    x = ((x * numberOfWaves) / width) * 2 * Math.PI;
-    return Math.sin(x);
-  }
-
-  function multiplier(x, width) {
-    let multiplierVar = 25;
-
-    if (x <= width / 2) {
-      return (x * multiplierVar * 2) / width;
-    }
-    return (width * multiplierVar) / 2 / x;
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, screenWidth, screenHeight);
-    ctx.beginPath();
-    ctx.moveTo(screenWidth, screenHeight);
-    for (let x = waveLength - 1; x > 0; x--) {
-      ctx.lineTo(x, waves[x]);
-    }
-
-    let gradient = ctx.createLinearGradient(0, 0, 0, screenHeight);
-    gradient.addColorStop(0.5, WATER_TOP_COLOR);
-    gradient.addColorStop(1, WATER_BOTTOM_COLOR);
-    ctx.fillStyle = gradient;
-    ctx.lineTo(0, screenHeight);
-    ctx.fill();
-    requestAnimationFrame(draw);
-  }
-
-  function initializedWaves() {
-    for (let x = 0; x < screenWidth; x++) {
-      wave[x] = value(x, screenWidth, valueWave1) * multiplier(x, screenWidth);
-      wave2[x] = value(x, screenWidth, valueWave2) * multiplier(x, screenWidth);
-      wave3[x] = value(x, screenWidth, valueWave3) * multiplier(x, screenWidth);
-    }
-    waveLength = Object.keys(wave).length;
-  }
-
-  function moveWaves() {
-    if (!waveLength) {
-      initializedWaves();
-    }
-    for (let x = waveLength - 1; x >= 0; x--) {
-      waves[x] = wave[x] + wave2[x] + wave3[x] + screenHeight / 1.5;
-    }
-  }
-
-  function startLoop() {
-    clearInterval(moveWavesId);
-    moveWavesId = setInterval(moveWaves, 8000 / screenWidth);
-  }
-
-  function recalculateCanvas() {
-    screenWidth = window.innerWidth;
-    screenHeight = window.innerHeight;
-    htmlCanvas.width = screenWidth / 2;
-    htmlCanvas.height = screenHeight - 100;
-
-    wave = {};
-    waveLength = 0;
-    wave2 = {};
-    wave3 = {};
-    waves = {};
-
-    startLoop();
-  }
-
-  window.addEventListener("resize", recalculateCanvas);
-  //window.removeEventListener("unload", recalculateCanvas);
-  recalculateCanvas();
-  requestAnimationFrame(draw);
-} */
