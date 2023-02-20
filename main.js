@@ -9,7 +9,7 @@ $(document).ready(() => {
   //API VisualCrossing
   cityName.forEach((element, i) => {
     fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${element}/next5days?unitGroup=metric&key=${APIKey}&contentType=json`,
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${element}/next7days?unitGroup=metric&key=${APIKey}&contentType=json`,
       {
         method: "GET",
         headers: {},
@@ -62,17 +62,21 @@ $(document).ready(() => {
           </div>`
         );
           
-        //SET DOTS
-        $(".weatherWidgetDotContent").append(`<i class="fa-regular fa-circle"></i>`);
-        $(`.weatherWidgetCardContent:first-child`).addClass("active");
-        $(`.fa-circle:first-child`).addClass("fa-solid");
-        let dinamicBackground = document.getElementsByClassName("weatherWidgetCardContent");
-        //Info Card forecast
-        function generateCardForecastInfo(days) {
-          let x = days.map((day) => { 
+        //Set navigation dots
+        $(".weatherWidgetDotContent").append('<i class="fa-regular fa-circle"></i>');
+        $('.weatherWidgetCardContent:first-child').addClass("active");
+        $('.fa-circle:first-child').addClass("fa-solid");
+        
+        //Set information forecast
+        function generateCardForecastInfo(days) {       
+          let x = days.splice(1).map((day) => { 
+            const d = new Date(day.datetime);
+            let dayNumber = d.getDay()
+            const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
+            //console.log(d, dayNumber, daysOfWeek[dayNumber])
             return `
               <div class="weatherWidgetForecastCard">
-                <p class="wWWidgetForecastDate"></p>
+                <p class="wWWidgetForecastDate">${daysOfWeek[dayNumber]}</p>
                 <img class="wWWidgetForecastIcon" src="./assets/icons/${day.icon}.svg">
                 <p class="wWWidgetForecastTemperature">
                   <span>${Math.round(day.tempmax)}°</span>
@@ -81,6 +85,7 @@ $(document).ready(() => {
           })
           return x.join('')
         }
+
         //Switch background
         function generateLinearGradient(data) {
           let dinamicBackIcon = data.currentConditions.icon;
@@ -159,6 +164,7 @@ $(document).ready(() => {
       });
   });
 
+  //Swipe controller
   let elementCard = document.getElementById("carousel-container");
 
   elementCard.addEventListener(
@@ -180,6 +186,7 @@ $(document).ready(() => {
 
   let counterSlide = 1;
 
+  //Check swipe left or right
   function checkTypeSwipe() {
     let swipeDirection = "";
     if (touchEndX < touchStartX && counterSlide > 0 && counterSlide <= 4) {
@@ -210,9 +217,9 @@ $(document).ready(() => {
   }
 
   
-}); // CLOSE READY
+}); // Close Ready
 
-//COUNTER SLIDER DESKTOP
+//Counter slider desktop
 let counterSliderDesk = 1
 
 function moveSlideArrow(direction) {
@@ -232,3 +239,4 @@ function moveSlideArrow(direction) {
     //console.log('prev', counterSliderDesk)
   }
 }
+

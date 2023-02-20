@@ -115,6 +115,7 @@
 
 .wWWidgetForecastDate {
   font-size: 14px;
+  color: #00000090;
 }
 
 .wWWidgetForecastIcon {
@@ -175,7 +176,7 @@ card #FEFFF8 */
 @media screen and (max-width: 380px) {
   
   .weatherWidgetCardContainer .weatherWidgetCardContent {
-    padding: 30px 20px;
+    padding: 30px 15px;
   }
   .wWCurrentConditionsMaxMin {
     margin: 0 0 20px;
