@@ -1,4 +1,4 @@
-let APIKey = "3WC7H3VP8NCUE6Z575DXTKTN7";
+let APIKey = "CXF9HQ8HT5REEMMCPPZGK49JQ";
 let cityName = ["London", "Milan", "Bangkok", "Los Angeles", "Nairobi"];
 let touchStartX = 0;
 let touchEndX = 0;
@@ -6,7 +6,7 @@ let elementCard = "";
 let waves = ["wave", "wave-1", "wave-2", "wave-3", "wave-4"];
 
 $(document).ready(() => {
-  //API VisualCrossing
+  //API VisualCrossing + forEach city array
   cityName.forEach((element, i) => {
     fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${element}/next7days?unitGroup=metric&key=${APIKey}&contentType=json`,
@@ -21,14 +21,14 @@ $(document).ready(() => {
       .then((data) => {
         let sunrise = data.currentConditions.sunrise.split("", 5).join("");
         let sunset = data.currentConditions.sunset.split("", 5).join("");
-        console.log('first data', data, i);
-        
+        //Create template card carousel
         $(".weatherWidgetCardContainer").append(
           `<div class="weatherWidgetCardContent" style="background:${generateLinearGradient(data)}">
             <div class="wWCurrentConditionsContainer">
               <div class="wWCurrentConditionsContent">
                 <p class="wWCurrentConditionsCity">
-                  <i class="fa-solid fa-location-pin"></i> ${data.address}
+                  <i class="fa-solid fa-location-pin"></i> 
+                  ${data.address}
                 </p>
                 <img class="wWCurrentConditionsIcon"src="./assets/icons/${data.currentConditions.icon}.svg">
                 <p class="wWCurrentConditionsTemp">${Math.round(data.currentConditions.temp)}°</p>
@@ -73,7 +73,6 @@ $(document).ready(() => {
             const d = new Date(day.datetime);
             let dayNumber = d.getDay()
             const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
-            //console.log(d, dayNumber, daysOfWeek[dayNumber])
             return `
               <div class="weatherWidgetForecastCard">
                 <p class="wWWidgetForecastDate">${daysOfWeek[dayNumber]}</p>
@@ -191,7 +190,6 @@ $(document).ready(() => {
     let swipeDirection = "";
     if (touchEndX < touchStartX && counterSlide > 0 && counterSlide <= 4) {
       swipeDirection = "left";
-      console.log("create right");
       increaseDecreaseSlide("+");
       $(`.weatherWidgetCardContent:nth-child(${counterSlide})`).addClass("active");
       $(`.weatherWidgetCardContent:nth-child(${counterSlide - 1})`).removeClass("active");
@@ -199,7 +197,6 @@ $(document).ready(() => {
       $(`.fa-circle:nth-child(${counterSlide - 1})`).removeClass("fa-solid");
     } else if (touchEndX > touchStartX && counterSlide > 1 && counterSlide <= 5) {
       swipeDirection = "right";
-      console.log("create left");
       increaseDecreaseSlide("-");
       $(".weatherWidgetCardContent").removeClass("active");
       $(`.weatherWidgetCardContent:nth-child(${counterSlide})`).addClass("active");
@@ -229,14 +226,12 @@ function moveSlideArrow(direction) {
     $(`.weatherWidgetCardContent:nth-child(${counterSliderDesk - 1})`).removeClass("active");
     $(`.fa-circle:nth-child(${counterSliderDesk})`).addClass("fa-solid");
     $(`.fa-circle:nth-child(${counterSliderDesk - 1})`).removeClass("fa-solid");
-    //console.log('next', counterSliderDesk)
   } else if (direction === 'left' && counterSliderDesk > 1 && counterSliderDesk <= 5) {
     counterSliderDesk--;
     $(".weatherWidgetCardContent").removeClass("active");
     $(`.weatherWidgetCardContent:nth-child(${counterSliderDesk})`).addClass("active");
     $(".fa-circle").removeClass("fa-solid");
     $(`.fa-circle:nth-child(${counterSliderDesk})`).addClass("fa-solid");
-    //console.log('prev', counterSliderDesk)
   }
 }
 
